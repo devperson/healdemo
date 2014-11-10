@@ -12,7 +12,6 @@
 /HealthDemo/HealthDemo.WinPhone
 /HServer/HServer.v12.suo
 /HServer/HServer.v11.suo
-/HServer/HServer/*
-/HServer/HServer/*
 /HServer/HServer/obj
 /HServer/HServer/bin
+/HServer/HServer/HServer.csproj.user
