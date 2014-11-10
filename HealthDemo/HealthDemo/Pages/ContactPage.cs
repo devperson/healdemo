@@ -39,7 +39,7 @@ namespace HealthDemo.Pages
 
             var numbersLayout = new StackLayout()
             {
-                Spacing = Device.OnPlatform(5, 0, 5),
+                Spacing = 0,
                 Orientation = StackOrientation.Vertical,
                 HorizontalOptions = LayoutOptions.FillAndExpand
             };
@@ -65,8 +65,8 @@ namespace HealthDemo.Pages
         {
             var telLayout = new StackLayout()
             {
-                Spacing = 0,
-                Orientation = StackOrientation.Horizontal,
+                Spacing = Device.OnPlatform(5, 0, 5),
+                Orientation = StackOrientation.Horizontal
             };
             var lblcenter = new Label()
             {
@@ -77,9 +77,10 @@ namespace HealthDemo.Pages
             };
             var lblNumber = new Button()
             {
-                Font = Font.SystemFontOfSize(13),
+                Font = Font.SystemFontOfSize(Device.OnPlatform(16, 13, 13)),
                 TextColor = Color.Blue,
                 BackgroundColor = Color.Transparent,
+                VerticalOptions = LayoutOptions.Center,
                 Text = number
             };
             lblNumber.Clicked += (s, e) =>
@@ -88,11 +89,21 @@ namespace HealthDemo.Pages
                     telFeature.Tel(lblNumber.Text);
                 };
 
-            
+
 
             telLayout.Children.Add(lblcenter);
             telLayout.Children.Add(lblNumber);
             return telLayout;
+        }
+
+        protected override void OnMasterViewRendered()
+        {
+            if (Device.OS == TargetPlatform.iOS)
+            {
+                //there seems some bug in xamarin because title croped to ten px
+                titleLayout.HeightRequest += 5;
+                titleImage.HeightRequest += 5;
+            }
         }
     }
 }

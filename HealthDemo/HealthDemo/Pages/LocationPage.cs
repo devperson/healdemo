@@ -33,16 +33,14 @@ namespace HealthDemo.Pages
             };
 
             map.Pins.Add(pin);
-
+            
             var stackLayout = new StackLayout() {Padding = 15, Orientation = StackOrientation.Vertical, VerticalOptions = LayoutOptions.FillAndExpand, HorizontalOptions = LayoutOptions.FillAndExpand };
             stackLayout.Children.Add(map);
             parent.Children.Add(stackLayout);
         }
 
-        
-
-
     }
+
 
     
 }

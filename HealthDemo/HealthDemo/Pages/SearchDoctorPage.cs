@@ -108,11 +108,14 @@ namespace HealthDemo.Pages
             
             VM.LoadSpeicalties(() =>
                 {
-                    foreach (var item in VM.SpeicaltyList)
+                    if (btnCombo.Items == null || (btnCombo.Items != null && btnCombo.Items.Count == 0))
                     {
-                        btnCombo.Items.Add(item.Title);
+                        foreach (var item in VM.SpeicaltyList)
+                        {
+                            btnCombo.Items.Add(item.Title);
+                        }
                     }
-                    btnCombo.SelectedIndex = 0;
+                    btnCombo.SelectedIndex = VM.SelectedSpeicalties != null ? VM.SpeicaltyList.IndexOf(VM.SelectedSpeicalties) : 0;
                 });
         }
     }

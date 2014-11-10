@@ -79,7 +79,7 @@ namespace HealthDemo.Pages
         private void RenderTemplateView()
         {   
             var rootAbsoluteLAyout = new AbsoluteLayout(){VerticalOptions = LayoutOptions.FillAndExpand, HorizontalOptions = LayoutOptions.FillAndExpand };
-            var rootStack = new StackLayout() { Spacing = 0, BackgroundColor = Color.FromHex("FFFFFF"), Orientation = StackOrientation.Vertical, VerticalOptions = LayoutOptions.FillAndExpand, HorizontalOptions = LayoutOptions.FillAndExpand };
+            var rootStack = new StackLayout() { Spacing = 0, BackgroundColor = Color.White, Orientation = StackOrientation.Vertical, VerticalOptions = LayoutOptions.FillAndExpand, HorizontalOptions = LayoutOptions.FillAndExpand };
 
             //header
             var headerStack = new StackLayout() { Orientation = StackOrientation.Horizontal, HorizontalOptions = LayoutOptions.FillAndExpand, Spacing = 0, Padding = new Thickness(0, 0, 5, 0) };
@@ -253,9 +253,9 @@ namespace HealthDemo.Pages
 
         public StackLayout CreateMenuLayout()
         {
-            var rootStack = new StackLayout() { TranslationX = 400, BackgroundColor = Color.FromHex("52000000"), Orientation = StackOrientation.Vertical, VerticalOptions = LayoutOptions.FillAndExpand, HorizontalOptions = LayoutOptions.FillAndExpand };
-            var listview = new ListView() { BackgroundColor = Color.White, TranslationX = 80, VerticalOptions = LayoutOptions.FillAndExpand, HorizontalOptions = LayoutOptions.FillAndExpand };
-            listview.ItemTemplate = new DataTemplate(typeof(SimpleCell));
+            var rootStack = new StackLayout() { Spacing = 0, TranslationX = 400, BackgroundColor = Color.FromHex("52000000"), Orientation = StackOrientation.Horizontal, VerticalOptions = LayoutOptions.FillAndExpand, HorizontalOptions = LayoutOptions.FillAndExpand };
+            var listview = new ListView() { BackgroundColor = Color.White, VerticalOptions = LayoutOptions.FillAndExpand, HorizontalOptions = LayoutOptions.FillAndExpand };
+            listview.ItemTemplate = new DataTemplate(typeof(SimpleCell2));
             listview.ItemsSource = new List<string>()
             {
                 "Section1",
@@ -264,9 +264,13 @@ namespace HealthDemo.Pages
                 "Section4",
                 "Section5",
             }.Select(s => new { Title = s});
-            rootStack.Children.Add(listview);
+            
+            listview.ItemSelected += (s, e) =>
+                {
 
-            rootStack.GestureRecognizers.Add(new TapGestureRecognizer(v =>
+                };
+            var hideButton = new Button() { VerticalOptions = LayoutOptions.FillAndExpand, WidthRequest = 79, BackgroundColor = Color.Transparent };
+            hideButton.Clicked += (s, e) =>
                 {
                     listview.SelectedItem = null;
                     if (Device.OS == TargetPlatform.Android)
@@ -279,8 +283,6 @@ namespace HealthDemo.Pages
                             else
                             {
                                 menuLayout.TranslationX += 20;
-                                //if (menuLayout.Opacity != 0)
-                                //    menuLayout.Opacity = 0;
                                 return true;
                             }
                         });
@@ -289,7 +291,9 @@ namespace HealthDemo.Pages
                     {
                         menuLayout.TranslateTo(400, 0);
                     }
-                }));
+                };
+            rootStack.Children.Add(hideButton);
+            rootStack.Children.Add(listview);
             return rootStack;
         }
 

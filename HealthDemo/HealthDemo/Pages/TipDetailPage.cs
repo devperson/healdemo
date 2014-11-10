@@ -15,7 +15,7 @@ namespace HealthDemo.Pages
             : base()
         {
             VM = ViewModelLocator.TipVM;
-            BindingContext = VM.SelectedTip;
+            BindingContext = VM;
             lblTitle.Text = "Health Tip";
         }
 
@@ -43,16 +43,17 @@ namespace HealthDemo.Pages
             };
             lblDescription.SetBinding(Label.TextProperty, new Binding("Description"));
 
-            var stackLayoutDetails = new StackLayout() { BackgroundColor = Color.White, Orientation = StackOrientation.Vertical, Padding = new Thickness(15, 15, 7, 15), Spacing = 10 };
-            stackLayoutDetails.Children.Add(lblDescription);
-            var frame1 = new Frame() { HorizontalOptions = LayoutOptions.FillAndExpand, Padding = new Thickness(20, 10, 20, 20) };
-            var frmae2 = new Frame() { BackgroundColor = Color.Black, HorizontalOptions = LayoutOptions.FillAndExpand, Padding = 1 };
-            frmae2.Content = stackLayoutDetails;
+            //var stackLayoutDetails = new StackLayout() { BackgroundColor = Color.White, Orientation = StackOrientation.Vertical, Padding = new Thickness(15, 15, 7, 15), Spacing = 10 };
+            //stackLayoutDetails.Children.Add(lblDescription);
+            var frame1 = new Frame() { HasShadow = false, HorizontalOptions = LayoutOptions.FillAndExpand, Padding = new Thickness(20, 10, 20, 20) };
+            var frmae2 = new Frame() { HasShadow = false, OutlineColor = Color.Black, BackgroundColor = Color.White, HorizontalOptions = LayoutOptions.FillAndExpand, Padding = new Thickness(15, 15, 7, 15) };
+            frmae2.Content = lblDescription;
             frame1.Content = frmae2;
 
             stlayout.Children.Add(stkl);
             stlayout.Children.Add(frame1);
             rootScrollView.Content = stlayout;
+            rootScrollView.SetBinding(ScrollView.BindingContextProperty, new Binding("SelectedTip"));
             parent.Children.Add(rootScrollView);
         }
     }

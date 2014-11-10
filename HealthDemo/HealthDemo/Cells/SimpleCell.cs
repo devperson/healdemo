@@ -43,4 +43,31 @@ namespace HealthDemo.Cells
             View = rootLayout;
         }
     }
+
+    public class SimpleCell2 : CustomCell
+    {
+        public SimpleCell2()
+            : base()
+        {
+            var rootLayout = new StackLayout()
+            {
+                Orientation = StackOrientation.Horizontal,
+                VerticalOptions = LayoutOptions.FillAndExpand,
+                HorizontalOptions = LayoutOptions.FillAndExpand,
+                BackgroundColor = Color.Transparent,
+                Padding = new Thickness(8, 10, 8, 10)
+            };
+
+            var lblTitle = new Label()
+            {
+                TextColor = Color.Black,
+                Font = Font.SystemFontOfSize(17),
+                HorizontalOptions = LayoutOptions.FillAndExpand,
+                VerticalOptions = LayoutOptions.Center
+            };
+            lblTitle.SetBinding(Label.TextProperty, new Binding("Title"));
+            rootLayout.Children.Add(lblTitle);
+            View = rootLayout;
+        }
+    }
 }

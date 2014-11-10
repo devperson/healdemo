@@ -39,5 +39,15 @@ namespace HealthDemo.Pages
             stackLayout.Children.Add(label);
             parent.Children.Add(stackLayout);
         }
+
+        //protected override void OnMasterViewRendered()
+        //{
+        //    if (Device.OS == TargetPlatform.iOS)
+        //    {
+        //        //there seems some bug in xamarin because title croped to ten px
+        //        titleLayout.HeightRequest += 10;
+        //        titleImage.HeightRequest += 10;
+        //    }
+        //}
     }
 }

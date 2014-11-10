@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,7 @@ namespace HealthDemo.Models
     public class HealthCategory
     {
         public int ID { get; set; }
+        [JsonProperty(PropertyName = "Name")]
         public string Title { get; set; }
         
     }

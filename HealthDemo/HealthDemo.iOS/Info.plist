@@ -18,5 +18,9 @@
 	<string>com.yourcompany.HealthDemo</string>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>We are using your location</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Can we use your location</string>
 </dict>
 </plist>
